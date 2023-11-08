@@ -2,6 +2,7 @@ package th.mfu.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import th.mfu.Entity.User;
@@ -17,6 +18,13 @@ public class userController {
 
     }
 
+    @GetMapping("/login")
+    public String loginPage(Model model)
+    {
+        User user = new User();
+        model.addAttribute("user",user);
+        return "login";
+    }
 
     
 }
