@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="mt-5 mb-4">Concert List</h1>
+    <a class="btn btn-primary" href="/register/">Add</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="register: ${users}">
+                <td th:text="${register.firstName}"></td>
+                <td th:text="${register.lastName}"></td>
+                <td th:text="${register.email}"></td>
+                <td th:text="${register.Telephone}"></td>
+            </tr>
+        </tbody>
+    </table>
+   
+</body>
+</html>

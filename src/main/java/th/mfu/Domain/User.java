@@ -1,4 +1,4 @@
-package th.mfu.Entity;
+package th.mfu.Domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +20,14 @@ public class User {
 
     private String country;
     private String dateOfBirth;
-    private String sex;
+    private String gender;
+
+    private String interest;
+    private Long ID;
+    
+
+
+
     public String getEmail() {
         return email;
     }
@@ -69,14 +76,24 @@ public class User {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
-
-    
+    public String getInterest() {
+        return interest;
+    }
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
+    public Long getID() {
+        return ID;
+    }
+    public void setID(Long iD) {
+        ID = iD;
+    }
 
 
     
