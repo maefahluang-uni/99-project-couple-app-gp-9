@@ -8,33 +8,28 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <form th:action="@{/register}" th:object="${user}" method="post">
+  <form th:action="@{/register}" th:object="${user}" method="post">
+    <div class="row">
+        <div class="col">
+            <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name" aria-label="First name">
+        </div>
+        <div class="col">
+            <input type="text" th:field="*{lastName}" class="form-control" placeholder="Last name" aria-label="Last name">
+        </div>
+    </div>
 
-        <div class="row">
-            <div class="col">
-              <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name" aria-label="First name">
-            </div>
-            <div class="col">
-              <input type="text" th:field="*{lastName}"class="form-control" placeholder="Last name" aria-label="Last name">
-            </div>
-          </div>
-        
-          
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-          </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Phone number</label>
-            <input type="Long" class="form-control" id="formGroupExampleInput2" placeholder="Type your phone number">
-          </div>
+    <div class="form-floating mb-3">
+        <input type="email" th:field="*{email}" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+    </div>
 
-          <button type="submit" class="btn btn-primary"
-        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-        Submit
-        </button>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Phone number</label>
+        <input type="Long" th:field="*{Telephone}" class="form-control" id="formGroupExampleInput2" placeholder="Type your phone number">
+    </div>
 
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-    </form>
 </body>
 </html>

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import th.mfu.Domain.User;
@@ -29,6 +31,15 @@ public class userController {
         return "list-user";
     }
 
+    @PostMapping("/register")
+    public String saveUsersString(@ModelAttribute User newUser) {
+        // Save the user to the database
+        userRepo.save(newUser);
+        // Redirect to the user list page
+        return "redirect:/users";
+    }
+    
+    
     // @GetMapping("/login")
     // public String loginPage(Model model)
     // {
