@@ -31,7 +31,7 @@ public class userController {
         return "list-user";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/users")
     public String saveUsersString(@ModelAttribute User newUser) {
         // Save the user to the database
         userRepo.save(newUser);

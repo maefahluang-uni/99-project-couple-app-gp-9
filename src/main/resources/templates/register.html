@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <form th:action="@{/register}" th:object="${user}" method="post">
+  <form th:action="@{/users}" th:object="${user}" method="post">
     <div class="row">
         <div class="col">
             <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name" aria-label="First name">
