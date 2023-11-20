@@ -1,8 +1,8 @@
 package th.mfu;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import th.mfu.Domain.Post;
+import th.mfu.Domain.User;
 
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     // You can add custom query methods here if needed
 }

@@ -1,25 +1,26 @@
 package th.mfu;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import th.mfu.Domain.User;
 import th.mfu.Domain.Like;
-import th.mfu.Domain.User;  // Import the correct User class
-import th.mfu.Domain.Post;  // Import the correct Post class
+import th.mfu.Domain.Post;
+
+import java.util.Optional;
 
 @Service
 public class LikeService {
     @Autowired
     private LikeRepository likeRepository;
+
     @Autowired
-    private userRepository userRepository;
+    private UserRepository userRepository;
+
     @Autowired
     private PostRepository postRepository;
 
     public void likePost(Long postId) {
-        Optional<User> currentUser = userRepository.findById(1L); // Assuming userRepository is properly defined
+        Optional<User> currentUser = userRepository.findById(1L);
         Optional<Post> post = postRepository.findById(postId);
 
         if (currentUser.isPresent() && post.isPresent()) {
@@ -29,14 +30,12 @@ public class LikeService {
     }
 
     public void unlikePost(Long postId) {
-        Optional<User> currentUser = userRepository.findById(1L); // Assuming userRepository is properly defined
+        Optional<User> currentUser = userRepository.findById(1L);
         Optional<Post> post = postRepository.findById(postId);
 
         if (currentUser.isPresent() && post.isPresent()) {
             Optional<Like> like = likeRepository.findByUserAndPost(currentUser.get(), post.get());
-            if (like.isPresent()) {
-                likeRepository.delete(like.get());
-            }
+            like.ifPresent(likeRepository::delete); // Using ifPresent to avoid null checks
         }
     }
 }

@@ -18,33 +18,40 @@ public class Like {
     @ManyToOne
     private Post post;
 
-    public Like(User user2, Post post2) {
-	}
+    // Constructors, getters, and setters
 
-	public void setId(Long id) {
-        this.id = id;
+    public Like() {
+        // Default constructor required by JPA
     }
 
-    public void setUser(User user) {
+    public Like(User user, Post post) {
         this.user = user;
-    }
-
-    public void setPost(Post post) {
         this.post = post;
     }
 
+    // Getters and setters for id, user, and post
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Post getPost() {
         return post;
     }
 
-    // Getters and setters
-    
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }

@@ -1,5 +1,7 @@
 package th.mfu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,7 @@ public class userController {
 
 
     @Autowired
-    private userRepository userRepo;
+    private UserRepository userRepo;
 
     @RequestMapping("/register")
     public String registerPage(Model model){
@@ -27,7 +29,8 @@ public class userController {
 
     @GetMapping("/users")
     public String listUser(Model model){
-        model.addAttribute("users", userRepo.findAll());
+        List<User> users = userRepo.findAll();
+        model.addAttribute("users", users);
         return "list-user";
     }
 
@@ -38,6 +41,7 @@ public class userController {
         // Redirect to the user list page
         return "redirect:/users";
     }
+
     
     
     // @GetMapping("/login")

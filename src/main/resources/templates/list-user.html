@@ -8,26 +8,61 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1 class="mt-5 mb-4">User List</h1>
-    <a class="btn btn-primary" href="/register/">Add</a>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone number</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="register: ${users}">
-                <td th:text="${register.firstName}"></td>
-                <td th:text="${register.lastName}"></td>
-                <td th:text="${register.email}"></td>
-                <td th:text="${register.Telephone}"></td>
-            </tr>
-        </tbody>
-    </table>
-   
+    <div class="container">
+        <h1 class="mt-5 mb-4">User List</h1>
+        <a class="btn btn-primary " href="/register/">Add</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Telephone</th>
+                    <th>ID Card</th>
+                    <th>Password</th>
+                    <th>Country</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Interest</th>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${users}">
+                    <td>
+                        <a th:href="@{'mailto:' + ${user.email}}" th:text="${user.email}"></a>
+                    </td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.telephone}"></td>
+                    <td th:text="${user.ID_card}"></td>
+                    <td>
+                        <span class="password-view" onclick="togglePasswordVisibility(this)">
+                            Show Password
+                        </span>
+                        <span class="hidden-password" style="display:none;" th:text="${user.password}"></span>
+                    </td>
+                    <td th:text="${user.country}"></td>
+                    <td th:text="${user.dateOfBirth}"></td>
+                    <td th:text="${user.gender}"></td>
+                    <td th:text="${user.interest}"></td>
+                    <td th:text="${user.ID}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(element) {
+            var passwordSpan = element.nextElementSibling;
+            if (passwordSpan.style.display === "none") {
+                passwordSpan.style.display = "inline";
+                element.innerText = "Hide Password";
+            } else {
+                passwordSpan.style.display = "none";
+                element.innerText = "Show Password";
+            }
+        }
+    </script>
 </body>
 </html>

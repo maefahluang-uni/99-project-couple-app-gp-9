@@ -11,6 +11,22 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String title;
+    private String content;
+
+    // Constructors, getters, and setters
+
+    public Post() {
+        // Default constructor required by JPA
+    }
+
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    // Getters and setters for id, title, and content
+
     public Long getId() {
         return id;
     }
@@ -19,8 +35,19 @@ public class Post {
         this.id = id;
     }
 
-    // Other fields, constructors, getters, and setters
+    public String getTitle() {
+        return title;
+    }
 
-    // Getters and setters
-    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

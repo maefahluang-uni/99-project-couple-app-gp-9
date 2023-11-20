@@ -13,12 +13,12 @@ public class LikeController {
     @PostMapping("/like/{postId}")
     public String likePost(@PathVariable Long postId) {
         likeService.likePost(postId);
-        return "redirect:/";
+        return "redirect:/"; // Redirect to the home page or another appropriate page
     }
 
     @PostMapping("/unlike/{postId}")
     public String unlikePost(@PathVariable Long postId) {
         likeService.unlikePost(postId);
-        return "redirect:/";
+        return "redirect:/"; // Redirect to the home page or another appropriate page
     }
 }
