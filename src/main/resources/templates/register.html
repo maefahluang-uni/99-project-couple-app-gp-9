@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <form th:action="@{/users}" th:object="${user}" method="post">
+  <form th:action="@{/login}" th:object="${user}" method="post">
     <div class="row">
         <div class="col">
             <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name" aria-label="First name">
@@ -20,7 +20,7 @@
 
     <div class="form-group">
         <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-        <label for="Email">Email address</label>
+        <label for="email">Email address</label>
     </div>
 
     <div class="mb-3">
@@ -61,6 +61,8 @@
     <!-- End of additional user details -->
 
     <button type="submit" class="btn btn-primary">Submit</button>
+
+   
 </form>
 
 </body>

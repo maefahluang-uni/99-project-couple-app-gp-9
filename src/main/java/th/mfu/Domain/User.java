@@ -10,6 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
     private String email;
     private String firstName;
     private String lastName;
@@ -23,7 +24,7 @@ public class User {
     private String gender;
 
     private String interest;
-    private Long ID;
+    
     
 
 

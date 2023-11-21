@@ -32,36 +32,59 @@
                 <div style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
                     <div style="color: black; font-size: 28px; font-family: Inter; font-weight: 700; word-wrap: break-word">Sign In</div>
                 </div>
-                <div style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; display: flex">
+                <form action="@{/register}" th:object= "${newUser}" method="post">
+                    <!-- Email input -->
                     <div style="width: 289px; height: 53px; padding: 16px; background: #F8F8F8; border-radius: 16px; border: 1px rgba(178, 178, 178, 0.25) solid; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
                         <div style="color: #5F5F5F; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Email</div>
                         <input type="text" name="email" id="email" required>
                     </div>
+
+                    <!-- Password input -->
                     <div style="width: 289px; height: 53px; padding: 16px; background: #F8F8F8; border-radius: 16px; border: 1px rgba(178, 178, 178, 0.25) solid; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
                         <div style="color: #5F5F5F; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Password</div>
-                        <input type="text" name="password" id="password" required>
+                        <input type="password" name="password" id="password" required>
                     </div>
-                    <div style="align-self: stretch; text-align: right; color: #5F5F5F; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Forgot Your Password?</div>
-                </div>
-                <div style="width: 292px; height: 45px; padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; background: #F88F8F; border-radius: 30px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-                    <div style="color: white; font-size: 15px; font-family: Inter; font-weight: 500; word-wrap: break-word"></div>
-                    <input type="submit" value="Sign in">
-                </div>
+
+                    <div style="align-self: stretch; text-align: right; color: #5F5F5F; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                        Forgot Your Password?
+                    </div>
+
+                    <!-- Sign in button -->
+                    <div style="width: 292px; height: 45px; padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; background: #F88F8F; border-radius: 30px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="color: white; font-size: 15px; font-family: Inter; font-weight: 500; word-wrap: break-word"></div>
+                        <input type="submit" value="Sign in">
+                    </div>
+                </form>
             </div>
-            <div><span style="color: #5F5F5F; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Don’t have an account.</span><span style="color: #F88F8F; font-size: 14px; font-family: Inter; font-weight: 400; text-decoration: underline; word-wrap: break-word"></span></div>
-            <input type="submit" value="Sign Up">
+            <div>
+                <span style="color: #5F5F5F; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Don’t have an account?</span>
+                <a href="/register" id="register-link" style="color: #F88F8F; font-size: 14px; font-family: Inter; font-weight: 400; text-decoration: underline; word-wrap: break-word;">Sign Up</a>
+            </div>
+            
         </div>
         <div style="width: 393px; height: 45.75px; left: 0px; top: 0px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
             <div style="width: 393px; height: 45.75px"></div>
-            
+
             <div style="width: 71.26px; height: 11.93px; position: relative">
                 <div style="width: 24.18px; left: 45.74px; top: 0.33px; position: absolute">
-                    
+
             </div>
         </div>
         <div style="width: 134px; height: 34px; left: 128px; top: 778px; position: absolute">
             <div style="width: 134px; height: 5px; left: 0px; top: 21px; position: absolute; background: black; border-radius: 100px"></div>
         </div>
     </div>
+    
+    <script>
+        function validateLogin() {
+            // Add your login validation logic here
+            alert("Login validation logic goes here...");
+        }
+    
+        function redirectToSignUp() {
+            // Redirect to the registration (sign-up) page
+            window.location.href = "register";
+        }
+    </script>
 </body>
 </html>
