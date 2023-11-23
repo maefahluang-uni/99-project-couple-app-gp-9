@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-import th.mfu.Domain.Like;
 import th.mfu.Domain.User;
 
 @Controller
@@ -27,31 +25,21 @@ public class userController {
     private UserRepository userRepo;
 
     @Autowired
-    private LikeRepository likeRepo;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRegistrationDetail registrationDetail;
      
     
     @RequestMapping("/register")
     public String registerPage(Model model){
-
-        
        User user = new User();
         model.addAttribute("user", user);
         return "register";
-
-        public String registerUserAcc(@ModelAttribute("user") UserRegistrationDetail registrationDetail){
-            userService.save(registrationDetail);
-            return "redirect:/registration?success";
-        }
-
-      
-        
     
+    }
+
+    @PostMapping("/register")
+    public String registerUserAccount(@ModelAttribute UserRegistrationDetail userRegistrationDetail){
+        userService.save(userRegistrationDetail);
+        return "redirect:/register?success";
     }
         
     //     if (user.getEmail() == null || user.getEmail().isEmpty() ||
@@ -111,26 +99,26 @@ public class userController {
 
 
 
-    @PostMapping("/like/{userId}")
-    public String likeUser(@PathVariable Long userId) {
-        // Get the current user's ID (you may need to adjust this based on your authentication mechanism)
-        Long currentUserId = getCurrentUserId();
+    // @PostMapping("/like/{userId}")
+    // public String likeUser(@PathVariable Long userId) {
+    //     // Get the current user's ID (you may need to adjust this based on your authentication mechanism)
+    //     Long currentUserId = getCurrentUserId();
 
-        // Check if the other user has already liked the current user
-        if (likeRepo.existsByUserId2AndUserId1(userId, currentUserId)) {
-            // Matched! Show the matched page
-            return "redirect:/matched";
-        } else {
-            // Record the like
-            likeRepo.save(new Like(currentUserId, userId));
-            // Redirect back to the list of users
-            return "redirect:/users";
-        }
-    }
+    //     // Check if the other user has already liked the current user
+    //     if (likeRepo.existsByUserId2AndUserId1(userId, currentUserId)) {
+    //         // Matched! Show the matched page
+    //         return "redirect:/matched";
+    //     } else {
+    //         // Record the like
+    //         likeRepo.save(new Like(currentUserId, userId));
+    //         // Redirect back to the list of users
+    //         return "redirect:/users";
+    //     }
+    // }
 
-    private Long getCurrentUserId() {
-        return null;
-    }
+    // private Long getCurrentUserId() {
+    //     return null;
+    // }
 
     // private Long getCurrentUserId() {
     //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

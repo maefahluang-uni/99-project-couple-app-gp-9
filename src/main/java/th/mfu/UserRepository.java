@@ -5,4 +5,5 @@ import th.mfu.Domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     // You can add custom query methods here if needed
+    User findByEmail(String email);
 }

@@ -1,11 +1,21 @@
 package th.mfu.Domain;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
@@ -27,13 +37,35 @@ public class User {
     
     
 
-
-
-    public User(String firstName2, String lastName2, String email2, String password2, String country2,
-            String dateOfBirth2, String gender2, String id_card2, String interest2, String telephone2) {
-    }
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "users_roles",
+			joinColumns = @JoinColumn(
+		            name = "user_id", referencedColumnName = "ID"),
+			inverseJoinColumns = @JoinColumn(
+				            name = "role_id", referencedColumnName = "ID"))
+	
+	private Collection<Role> roles;
+	
     public User() {
     }
+
+    
+    public User(String email, String firstName, String lastName, String telephone, String iD_card, String password,
+            String country, String dateOfBirth, String gender, String interest, Collection<Role> roles) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        Telephone = telephone;
+        ID_card = iD_card;
+        this.password = password;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.interest = interest;
+        this.roles = roles;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -100,6 +132,13 @@ public class User {
     public void setID(Long iD) {
         ID = iD;
     }
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+    
 
 
     

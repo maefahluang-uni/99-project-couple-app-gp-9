@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <form th:action="@{/login}" th:object="${user}" method="post">
+  <!-- <form th:action="@{/login}" th:object="${user}" method="post">
     <div class="row">
         <div class="col">
             <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name" aria-label="First name">
@@ -58,12 +58,124 @@
         <input type="text" th:field="*{interest}" class="form-control" id="formGroupExampleInput8" placeholder="Type your interest">
     </div>
 
-    <!-- End of additional user details -->
+    End of additional user details -->
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button>
 
    
-</form>
+</form> -->
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Registration and
+                Login Module</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<!-- Create HTML registration form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <!-- success message -->
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered
+                    to our awesome app!</div>
+            </div>
+
+            <h1>Registration</h1>
+
+            <form th:action="@{/registration}" method="post" th:object="${user}">
+                <div class="form-group">
+                    <label class="control-label" for="firstName"> First Name </label>
+                    <input id="firstName" class="form-control" th:field="*{firstName}"
+                        required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="lastName"> Last Name </label> <input
+                        id="lastName" class="form-control" th:field="*{lastName}"
+                        required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="email"> Email </label> <input
+                        id="email" class="form-control" th:field="*{email}" required
+                        autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="password"> Password </label> <input
+                        id="password" class="form-control" type="password"
+                        th:field="*{password}" required autofocus="autofocus" />
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="control-label" for="phoneNumber"> Phone number </label> <input
+                        id="Telephone" class="form-control" type="text"
+                        th:field="*{telephone}" required autofocus="autofocus" />
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="control-label" for="Id_card"> ID Card </label> <input
+                        id="password" class="form-control" type="text"
+                        th:field="*{ID_card}" required autofocus="autofocus" />
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="control-label" for="dateOfBirth"> Date of Birth </label> <input
+                        id="dateOfBirth" class="form-control" type="text"
+                        th:field="*{dateOfBirth}" required autofocus="autofocus" />
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="control-label" for="gender"> Gender </label> <input
+                        id="gender" class="form-control" type="text"
+                        th:field="*{gender}" required autofocus="autofocus" />
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="control-label" for="country"> Country</label> <input
+                        id="country" class="form-control" type="text"
+                        th:field="*{country}" required autofocus="autofocus" />
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="control-label" for="interest"> Interest </label> <input
+                        id="interest" class="form-control" type="text"
+                        th:field="*{interest}" required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <span>Already registered? <a href="/" th:href="@{/login}">Login
+                            here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
+
+
