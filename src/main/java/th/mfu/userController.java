@@ -1,18 +1,20 @@
 package th.mfu;
 
 
-
-
 import java.util.List;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import th.mfu.Domain.Like;
 import th.mfu.Domain.User;
 
 @Controller
@@ -23,22 +25,41 @@ public class userController {
   
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private LikeRepository likeRepo;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRegistrationDetail registrationDetail;
      
     
     @RequestMapping("/register")
     public String registerPage(Model model){
-     
+
+        
        User user = new User();
         model.addAttribute("user", user);
         return "register";
-    
 
+        public String registerUserAcc(@ModelAttribute("user") UserRegistrationDetail registrationDetail){
+            userService.save(registrationDetail);
+            return "redirect:/registration?success";
+        }
+
+      
+        
+    
+    }
         
     //     if (user.getEmail() == null || user.getEmail().isEmpty() ||
     //     user.getPassword() == null || user.getPassword().isEmpty()) {
     //     model.addAttribute("error", "Please fill in all the fields.");
     //     return "register"; // Display the registration form with an error message
     // }
+
 
     // // Simulated check for existing email
     // for (User existingUser : users) {
@@ -48,7 +69,7 @@ public class userController {
     //     }
 
     // }
-    }
+    
 
     // // Registration successful
    
@@ -87,4 +108,45 @@ public class userController {
         // Redirect to the user list page
         return "redirect:/login";
     }
+
+
+
+    @PostMapping("/like/{userId}")
+    public String likeUser(@PathVariable Long userId) {
+        // Get the current user's ID (you may need to adjust this based on your authentication mechanism)
+        Long currentUserId = getCurrentUserId();
+
+        // Check if the other user has already liked the current user
+        if (likeRepo.existsByUserId2AndUserId1(userId, currentUserId)) {
+            // Matched! Show the matched page
+            return "redirect:/matched";
+        } else {
+            // Record the like
+            likeRepo.save(new Like(currentUserId, userId));
+            // Redirect back to the list of users
+            return "redirect:/users";
+        }
+    }
+
+    private Long getCurrentUserId() {
+        return null;
+    }
+
+    // private Long getCurrentUserId() {
+    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+    //     // Check if the user is authenticated
+    //     if (authentication != null && authentication.isAuthenticated()) {
+    //         // Retrieve the principal (which should be your User object)
+    //         Object principal = authentication.getPrincipal();
+    
+    //         // Assuming your User object has a method to get the user ID
+    //         if (principal instanceof User) {
+    //             return ((User) principal).getID(); // Replace with your actual method to get ID
+    //         }
+    //     }
+    
+    //     // If not authenticated or no user details available, return null or handle accordingly
+    //     return null;
+    // }
 }
