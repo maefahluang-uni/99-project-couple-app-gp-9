@@ -10,5 +10,4 @@
 
 //     boolean existsByUserId2AndUserId1(Long userId2, Long userId1);
 
-    
 // }
