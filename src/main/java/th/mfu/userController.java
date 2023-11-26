@@ -1,8 +1,4 @@
 package th.mfu;
-
-
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
