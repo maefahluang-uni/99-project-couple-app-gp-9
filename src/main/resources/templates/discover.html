@@ -53,14 +53,14 @@
 <!-- </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Partner</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     Include Bootstrap CSS -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         body {
@@ -127,14 +127,136 @@
                             <div>
                                 <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/like(currentIndex=${currentIndex})}">Like</a>
                                 <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/unlike(currentIndex=${currentIndex})}">Unlike</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <td><a class="btn btn-primary" th:href="@{/profile}">View Profile</a> </td>
+        </div>
+    </div>
+   
+</body>
+</html> --> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Partner</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffcccb; /* Pink background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .iphone-frame {
+            width: 428px; /* iPhone 14 Pro Max width in portrait mode */
+            height: 926px; /* iPhone 14 Pro Max height in portrait mode */
+            background-color: #ffffff; /* White frame color */
+            border: 16px solid #ff1493; /* Pink border color */
+            border-radius: 36px; /* Border radius for a rounded frame */
+            margin: 50px auto; /* Center the frame */
+            position: relative;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff1493; /* Pink heading color */
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff1493; /* Pink header background */
+            color: #fff; /* White header text color */
+        }
+
+        .btn-primary {
+            background-color: #ff1493; /* Pink button color */
+            border-color: #ff1493; /* Pink border color */
+            color: #fff; /* White text color */
+            margin-right: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #db1171; /* Darker shade on hover */
+        }
+
+        .btn-secondary {
+            background-color: #fff; /* White button color */
+            border-color: #ff1493; /* Pink border color */
+            color: #ff1493; /* Pink text color */
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff1493; /* Pink shade on hover */
+            color: #fff; /* White text color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="iphone-frame">
+        <div class="container">
+            <h1 class="mt-5 mb-4">Choose Partner</h1>
+            <td><a class="btn btn-secondary" th:href="@{/profile}">View Profile</a></td>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Like</th>
+                        <th>Unlike</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td>
+                            <div>
+                                <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/like(currentIndex=${currentIndex})}">Like</a>
                                 
                             </div>
                         </td>
-                        <td><a class="btn btn-primary" th:href="@{/profile}">View Profile</a> </td>
+                        <td>
+                            <div><a class="btn btn-primary" th:href="@{/discover/{currentIndex}/unlike(currentIndex=${currentIndex})}">Unlike</a></div>
+                        </td>
+                        
+                        
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </body>
+
 </html>
+

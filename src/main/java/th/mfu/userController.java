@@ -136,6 +136,20 @@ public String saveregister(@ModelAttribute User user){
         return "discover";
     }
 
+    @GetMapping("/discover/{currentIndex}/unlike")
+    public String SkipThisuser(@PathVariable int currentIndex, Model model) {
+        List<User> users = userRepo.findAll();
+        List<User> randomizedUsers = new ArrayList<>(users);
+        Collections.shuffle(randomizedUsers);
+
+        int totalUsers = randomizedUsers.size();
+        int nextIndex = (currentIndex + 1) % totalUsers;
+
+        model.addAttribute("users", randomizedUsers.get(nextIndex));
+        model.addAttribute("currentIndex", nextIndex);
+        return "discover";
+    }
+
 
     @GetMapping("/delete-user/{ID}")
     public String deleteUsers(@PathVariable("ID") long ID) {
@@ -155,18 +169,19 @@ public String saveregister(@ModelAttribute User user){
     public String showProfilePage(Model model)
     {
         List<User> users = loginRepo.findAll();
-        model.addAttribute("user_profile", users.get(0));
-        model.addAttribute("currentIndex", 0);
-        model.addAttribute("user_profile", loginRepo.findAll());
+        model.addAttribute("users", users);
         return "profile";
     }
 
     @GetMapping("/profile/{currentIndex}/view")
-    public String showProfileinDetails(@PathVariable int currentIndex, Model model) {
+    public String showProfileInDetails(@PathVariable int currentIndex, Model model) {
         List<User> users = loginRepo.findAll();
-        model.addAttribute("users", users.get(currentIndex));
+        model.addAttribute("user_profile", users.get(currentIndex));
+        model.addAttribute("currentIndex", currentIndex);
         return "profile";
     }
+
+
 
     // @PostMapping("/profile")
     // public String ProfilePage(@ModelAttribute User LoginUser)
