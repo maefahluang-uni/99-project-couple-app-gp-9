@@ -1,76 +1,138 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  
+    <!-- Include Bootstrap CSS -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Choose partner</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${users}">
+                    
+                    <td th:text="${user.firstName}" ></td>
+                    <td th:text="${user.lastName}"></td>
+               
+                    <td>
+                        <div>
+                            <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/like(currentIndex=${currentIndex})}">Like</a>
+                            <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/unlike(currentIndex=${currentIndex})}">Unlike</a>
+                        </div> -->
+
+                        <!-- <button class="btn btn-success" th:onclick="likeUser(${user.ID})">Like</button>
+                        <button class="btn btn-warning" th:onclick="unlikeUser(${user.ID})">Unlike</button> -->
+                    <!-- </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    <!-- <script th:inline="javascript">
+        /*<![CDATA[*/
+        function likeUser(ID) {
+            // Perform AJAX request or navigate to a Spring MVC endpoint for liking the user
+            console.log("Liked User ID: " + ID);
+        }
+
+        function unlikeUser(ID) {
+            // Perform AJAX request or navigate to a Spring MVC endpoint for unliking the user
+            console.log("Unliked User ID: " + ID);
+        }
+        /*]]>*/
+    </script> -->
+<!-- </body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title</title>
+    <title>Choose Partner</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
-            overflow: hidden;
+            padding: 0;
+            background-color: #ffcccb; /* Pink background */
+        }
+
+        .iphone-frame {
+            width: 428px; /* iPhone 14 Pro Max width in portrait mode */
+            height: 926px; /* iPhone 14 Pro Max height in portrait mode */
+            background-color: #ffffff; /* White frame color */
+            border: 16px solid #ff1493; /* Pink border color */
+            border-radius: 36px; /* Border radius for a rounded frame */
+            margin: 50px auto; /* Center the frame */
+            position: relative;
         }
 
         .container {
-            width: 428px; /* iPhone 13 Pro Max width */
-            height: 926px; /* iPhone 13 Pro Max height */
-            position: relative;
-            background: white;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
-            overflow: hidden;
+            padding: 20px;
         }
 
-        .gradient {
-            width: 428px;
-            height: 344px;
-            position: absolute;
-            top: 0;
-            background: linear-gradient(180deg, #F88F8F 0%, #F38487 100%, #C30F31 100%);
-            border-top-left-radius: 39px;
-            border-top-right-radius: 39px;
+        h1 {
+            color: #333; /* Text color */
         }
 
-        .content {
-            width: 375px; /* Adjust content width as needed */
-            height: 100%; /* Take full height */
-            position: absolute;
-            top: 344px; /* Adjust the top position as needed */
-            left: 50%; /* Center the content */
-            transform: translateX(-50%);
-            overflow: hidden;
+        table {
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .image {
-            width: 375px;
-            height: 508px;
-            position: absolute;
-            border-radius: 13px;
-            overflow: hidden;
+        th, td {
+            padding: 10px;
+            text-align: left;
         }
 
-        /* Add other styles as needed */
+        .btn-primary {
+            background-color: #ff1493; /* Pink button color */
+            border-color: #ff1493; /* Pink border color */
+        }
 
+        .btn-primary:hover {
+            color: #fff; /* White text color on hover */
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="gradient"></div>
-
-    <div class="content">
-        <div class="image">
-            <!-- Image and other content -->
-            <img style="width: 100%; height: 100%; object-fit: cover;" src="https://via.placeholder.com/375x508" alt="Your Image Alt Text">
-            <!-- Add additional content here -->
+    <div class="iphone-frame">
+        <div class="container">
+            <h1 class="mt-5 mb-4">Choose Partner</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td>
+                            <div>
+                                <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/like(currentIndex=${currentIndex})}">Like</a>
+                                <a class="btn btn-primary" th:href="@{/discover/{currentIndex}/unlike(currentIndex=${currentIndex})}">Unlike</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <div style="left: 50%; top: 47px; transform: translateX(-50%); position: absolute; color: white; font-size: 36px; font-family: Nunito; font-weight: 800; word-wrap: break-word; z-index: 1;">Discover</div>
-
-    <!-- Add other elements and content here -->
-
-</div>
-
 </body>
 </html>
-

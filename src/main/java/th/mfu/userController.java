@@ -3,6 +3,8 @@ package th.mfu;
 
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.yaml.snakeyaml.events.Event.ID;
+
 
 import th.mfu.Domain.User;
 
@@ -89,16 +91,94 @@ public String saveregister(@ModelAttribute User user){
         }
     }
 
+    // @GetMapping("/discover")
+    // public String showDiscoverPage(Model model) {
+    //     List<User> users = userRepo.findAll();
+    //     List<User> randomizedUsers = new ArrayList<>(users);
+        
+    //     // Randomize the order of the list
+    //     Collections.shuffle(randomizedUsers);
+    //     model.addAttribute("users", randomizedUsers);
+    //     return "discover";
+    // }
+
+
     @GetMapping("/discover")
-    public String showDiscoverPage() {
+    public String showFirstDiscoverPage(Model model) {
+        List<User> users = userRepo.findAll();
+        List<User> randomizedUsers = new ArrayList<>(users);
+        Collections.shuffle(randomizedUsers);
+
+        model.addAttribute("users", randomizedUsers.get(0));
+        model.addAttribute("currentIndex", 0);
+
         return "discover";
     }
+
+    // Method to show the next randomized user
+    @GetMapping("/discover/{currentIndex}/like")
+    public String showNextDiscoverPage(@PathVariable int currentIndex, Model model) {
+        List<User> users = userRepo.findAll();
+        List<User> randomizedUsers = new ArrayList<>(users);
+        Collections.shuffle(randomizedUsers);
+
+        int totalUsers = randomizedUsers.size();
+        int nextIndex = (currentIndex + 1) % totalUsers;
+
+        model.addAttribute("users", randomizedUsers.get(nextIndex));
+        model.addAttribute("currentIndex", nextIndex);
+
+        return "discover";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/delete-user/{ID}")
     public String deleteUsers(@PathVariable("ID") long ID) {
     userRepo.deleteById(ID);
     return "redirect:/users";
 }
+
+
+// @GetMapping("/like-user/{ID}")
+// public String likeUser(@PathVariable Long ID) {
+//     userRepo.likeUser(ID);
+//     return "redirect:/users"; // Redirect to the users page after liking
+// }
+
+// @GetMapping("/unlike-user/{ID}")
+// public String unlikeUser(@PathVariable Long ID) {
+//     userRepo.unlikeUser(ID);
+//     return "redirect:/users"; // Redirect to the users page after unliking
+// }
 
     
 }
