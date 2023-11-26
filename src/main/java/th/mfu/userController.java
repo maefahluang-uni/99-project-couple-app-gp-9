@@ -32,8 +32,7 @@ public class userController {
     @Autowired
     private loginRepository loginRepo;
 
-    // @Autowired
-    // private UserService userService;
+
      
     
     @RequestMapping("/register")
@@ -97,16 +96,7 @@ public String saveregister(@ModelAttribute User user){
         }
     }
 
-    // @GetMapping("/discover")
-    // public String showDiscoverPage(Model model) {
-    //     List<User> users = userRepo.findAll();
-    //     List<User> randomizedUsers = new ArrayList<>(users);
-        
-    //     // Randomize the order of the list
-    //     Collections.shuffle(randomizedUsers);
-    //     model.addAttribute("users", randomizedUsers);
-    //     return "discover";
-    // }
+   
 
 
     @GetMapping("/discover")
@@ -180,51 +170,10 @@ public String saveregister(@ModelAttribute User user){
         model.addAttribute("currentIndex", currentIndex);
         return "profile";
     }
-
-
-
-    // @PostMapping("/profile")
-    // public String ProfilePage(@ModelAttribute User LoginUser)
-    // {
-    //     userRepo.save(LoginUser);
-    //     return "redirect:/profile";
-    // }
-
-    
-// @PostMapping("/update-profile")
-// public String updateProfile(User updatedUser) {
-//     // Validate and update the user information in the database
-//     User existingUser = userRepo.findById(updatedUser.getID()).orElse(null);
-
-//     if (existingUser != null) {
-//         // Update user information
-//         existingUser.setFirstName(updatedUser.getFirstName());
-//         existingUser.setLastName(updatedUser.getLastName());
-//         // Update other fields as needed
-
-//         userRepo.save(existingUser);
-
-//         // Redirect to the profile page after successful update
-//         return "redirect:/user/profile";
-//     } else {
-//         // Handle user not found case
-//         return "redirect:/error"; // Redirect to an error page
-//     }
-// }
 }
 
 
-// @GetMapping("/like-user/{ID}")
-// public String likeUser(@PathVariable Long ID) {
-//     userRepo.likeUser(ID);
-//     return "redirect:/users"; // Redirect to the users page after liking
-// }
-
-// @GetMapping("/unlike-user/{ID}")
-// public String unlikeUser(@PathVariable Long ID) {
-//     userRepo.unlikeUser(ID);
-//     return "redirect:/users"; // Redirect to the users page after unliking
-// }
+   
 
 
 

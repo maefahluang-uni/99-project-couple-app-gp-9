@@ -7,6 +7,6 @@ import th.mfu.Domain.User;
 
 public interface loginRepository extends JpaRepository<User,Long> {
 
-    // List<User> loginUser = new ArrayList<>();
+
     
 } 
