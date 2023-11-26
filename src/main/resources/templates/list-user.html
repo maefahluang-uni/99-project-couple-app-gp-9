@@ -47,6 +47,11 @@
                     <td th:text="${user.gender}"></td>
                     <td th:text="${user.interest}"></td>
                     <td th:text="${user.ID}"></td>
+
+                    <td>
+                        <a class="btn btn-danger" th:href="@{/delete-user/{ID}(ID=${user.ID})}" th:onclick= "return confirm('Are you sure you want to delete this user?')">Delete</a>
+                    </td>
+
                 </tr>
             </tbody>
         </table>

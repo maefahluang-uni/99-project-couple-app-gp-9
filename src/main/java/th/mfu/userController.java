@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.yaml.snakeyaml.events.Event.ID;
 
 import th.mfu.Domain.User;
 
@@ -22,6 +24,9 @@ public class userController {
     
     @Autowired
     private UserRepository userRepo;
+
+    // @Autowired
+    // private UserService userService;
      
     
     @RequestMapping("/register")
@@ -46,8 +51,8 @@ public String saveregister(@ModelAttribute User user){
 
     @GetMapping("/users")
     public String listUser(Model model){
-        List<User> users = userRepo.findAll();
-        model.addAttribute("users", users);
+        // List<User> users = userRepo.findAll();
+        model.addAttribute("users", userRepo.findAll());
         return "list-user";
     }
 
@@ -88,6 +93,12 @@ public String saveregister(@ModelAttribute User user){
     public String showDiscoverPage() {
         return "discover";
     }
+
+    @GetMapping("/delete-user/{ID}")
+    public String deleteUsers(@PathVariable("ID") long ID) {
+    userRepo.deleteById(ID);
+    return "redirect:/users";
+}
 
     
 }
