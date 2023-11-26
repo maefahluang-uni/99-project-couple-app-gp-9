@@ -29,8 +29,8 @@ public class userController {
     @Autowired
     private UserRepository userRepo;
 
-    // @Autowired
-    // private loginRepository loginRepo;
+    @Autowired
+    private loginRepository loginRepo;
 
     // @Autowired
     // private UserService userService;
@@ -151,16 +151,22 @@ public String saveregister(@ModelAttribute User user){
 //         return "profile";
 //     }
 
-    // @GetMapping("/profile")
-    // public String showProfilePage(Model model)
-    // {
-    //     List<User> users = userRepo.findAll();
-    //     model.addAttribute("users_profile", users.get(0));
-    //     // model.addAttribute("currentIndex", 0);
-    //     model.addAttribute("user_profile", userRepo.findAll());
-    //     return "profile";
-    // }
+    @GetMapping("/profile")
+    public String showProfilePage(Model model)
+    {
+        List<User> users = loginRepo.findAll();
+        model.addAttribute("user_profile", users.get(0));
+        model.addAttribute("currentIndex", 0);
+        model.addAttribute("user_profile", loginRepo.findAll());
+        return "profile";
+    }
 
+    @GetMapping("/profile/{currentIndex}/view")
+    public String showProfileinDetails(@PathVariable int currentIndex, Model model) {
+        List<User> users = loginRepo.findAll();
+        model.addAttribute("users", users.get(currentIndex));
+        return "profile";
+    }
 
     // @PostMapping("/profile")
     // public String ProfilePage(@ModelAttribute User LoginUser)
