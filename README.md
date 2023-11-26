@@ -16,3 +16,4 @@ The Couple App project aims to create a modern and user-friendly platform that c
 
 # Deployed On Google Cloud
 
+https://lab-cd-wkgaxcas3a-uc.a.run.app/login
